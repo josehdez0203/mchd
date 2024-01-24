@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="pay.css" />
+  </head>
+  <body>
+    <header>
+        <div class="logo">
+          <a href="index%20MCHD.html">
+            <img src="" alt="" /><button
+              class="button2"
+              style="vertical-align: middle"
+            >
+              <span>MCHD </span>
+            </button>
+            <nav>
+              <ul>
+                <li><a href="Servicios.html">Servicios</a></li>
+                <li><a href="Servidor (2).html">Unete</a></li>
+                <li><a href="Usuario2.html">Registrarse</a></li>
+              </ul>
+            </nav></a
+          >
+        </div>
+      </header>
+  
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/bb515311f9.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Pago</title>
+  <body>
+    <div class="checkout-container">
+      <div class="left-side">
+        <div class="text-box">
+          <h1 class="home-heading">MCHD</h1>
+          <p class="home-price"><em>Pago </em>/ Contrato</p>
+          <hr class="left-hr" />
+          <p class="home-desc"><em>Contrato </em>de <em>Servicio</em></p>
+          <p class="home-desc">
+            <em>26, Octubre, 2023 </em>a <em>Elección</em>
+          </p>
+        </div>
+      </div>
+
+      <div class="right-side">
+        <div class="receipt">
+          <h2 class="receipt-heading">Datos</h2>
+          <div>
+            <table class="table">
+              <tr>
+                <td>Pago a acordar </td>
+                <td class="price">mxn</td>
+              </tr>
+              <tr>
+                <td>Descuento</td>
+                <td class="price">0.00 mxn</td>
+              </tr>
+              <tr>
+                <td>Subtotal</td>
+                <td class="price">A acordar mxn</td>
+              </tr>
+              
+              <tr class="total">
+                <td>Total</td>
+                <td class="price">A acordar</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="payment-info">
+          <h3 class="payment-heading">Informacion del Pago</h3>
+          <form
+            class="form-box"
+            enctype="text/plain"
+            method="get"
+            target="_blank"
+          >
+            <div>
+              <label for="full-name">Nombre Completo</label>
+              <input
+                id="full-name"
+                name="full-name"
+                placeholder="Frida Kahlo"
+                required
+                type="text"
+              />
+            </div>
+
+            <div>
+              <label for="credit-card-num"
+                >Numero de Tarjeta
+                <span class="card-logos">
+                  <i class="card-logo fa-brands fa-cc-visa"></i>
+                  <i class="card-logo fa-brands fa-cc-amex"></i>
+                  <i class="card-logo fa-brands fa-cc-mastercard"></i>
+                  <i class="card-logo fa-brands fa-cc-discover"></i> </span
+              ></label>
+              <input
+                id="credit-card-num"
+                name="credit-card-num"
+                placeholder="1111-2222-3333-4444"
+                required
+                type="text"
+              />
+            </div>
+
+            <div>
+              <p class="expires">Expira en:</p>
+              <div class="card-experation">
+                <label for="expiration-month">Mes</label>
+                <select id="expiration-month" name="expiration-month" required>
+                  <option value="">Mes:</option>
+                  <option value="">Enero</option>
+                  <option value="">Febrero</option>
+                  <option value="">Marzo</option>
+                  <option value="">Abril</option>
+                  <option value="">Mayo</option>
+                  <option value="">Junio</option>
+                  <option value="">Julio</option>
+                  <option value="">Agosto</option>
+                  <option value="">Septiembre</option>
+                  <option value="">Octubre</option>
+                  <option value="">Noviembre</option>
+                  <option value="">Diciembre</option>
+                </select>
+
+                <label class="expiration-year">Año</label>
+                <select id="experation-year" name="experation-year" required>
+                  <option value="">Año</option>
+                  <option value="">2023</option>
+                  <option value="">2024</option>
+                  <option value="">2025</option>
+                  <option value="">2026</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="cvv">CVV</label>
+              <input
+                id="cvv"
+                name="cvv"
+                placeholder="415"
+                type="text"
+                required
+              />
+              <a class="cvv-info" href="https://www.bbva.com/es/salud-financiera/que-es-el-ccv-o-cvc-en-las-tarjetas-de-credito/">Que es CVV?</a>
+            </div>
+
+            <button class="btn">
+              <i class="fa-solid fa-lock"></i> Pago Seguro
+            </button>
+          </form>
+
+          <p class="footer-text">
+            <i class="fa-solid fa-lock"></i>
+           La informacion de tu tarjeta será encriptada
+          </p>
+        </div>
+      </div>
+    </div>
+      
+  </body>
+  </html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Usuario MCHD</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="formulario.css" />
+  </head>
+  <body>
+    <form action="guardar.php" method="POST" enctype="multipart/form-data">
+      <header>
+        <div class="logo">
+          <a href="index%20MCHD.html">
+            <img src="Logo%20(4).png" alt="MCHD" /><button
+              class="button2"
+              style="vertical-align: middle"
+            >
+              <span>MCHD </span>
+            </button>
+            <nav>
+              <ul>
+                <li><a href="Servicios.html">Servicios</a></li>
+                <li><a href="Servidor (2).html">Unete</a></li>
+                <li><a href="Usuario2.html">Registrarse</a></li>
+              </ul>
+            </nav></a
+          >
+        </div>
+      </header>
+<?php include "./partes/header.php" ?>
+<?php include "./partes/buscar.php" ?>
+      <div class="tabla">
+        <h2>UNETE A NOSOTROS</h2>
+        <p type="">
+          <label>Cuenta: </label>
+          <input
+            type="text"
+            requiered
+            name="cuenta"
+            placeholder="Mi cuenta..."
+            value=""
+          />
+        </p>
+
+        <p type="">
+          <label> Servicio: </label>
+          <input type="text" placeholder="Servicio" name="servicio" required />
+        </p>
+
+        <p type="">
+          <label>Teléfono</label>
+          <input
+            name="tel"
+            type="tel"
+            placeholder="Ej. 3538899999"
+            pattern="[0-9]{10}"
+            required
+          />
+        </p>
+        <p type="">
+          <label>Email:</label
+          ><input type="email" value="" name="correo" required />
+        </p>
+        <p type="">
+          <label> Contraseña: </label>
+          <input type="password" name="pass" placeholder="*****" required />
+        </p>
+        <p type="">
+          <label> Algo de ti: </label>
+          <input
+            type="text"
+            requiered
+            name="nombre"
+            placeholder="tu..."
+            value=""
+          />
+        </p>
+        <p type="">
+          <label> Foto de perfil: </label>
+          <input type="file" name="Imagen" placeholder="Imagen... " value="" />
+        </p>
+
+        <button class="boton">Enviar</button>
+        <div class="pie">
+          <span class="fa fa-phone"></span>001 1023 567
+          <span class="fa fa-envelope-o"></span> MexChambDur@MCHD.com
+        </div>
+      </div>
+    </form>
+  </body>
+</html>

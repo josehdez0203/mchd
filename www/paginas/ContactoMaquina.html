@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Compra de un Artículo</title>
+    <link rel="stylesheet" href="ContactoEstilo.css" />
+  </head>
+  <header>
+    <div class="logo">
+      <a href="index%20MCHD.html">
+        <img src="Logo%20(4).png" alt="MCHD" /><button
+          class="button2"
+          style="vertical-align: middle"
+        >
+          <span>MCHD </span>
+        </button>
+      </a>
+      <section class="search">
+        <form>
+          <input type="text" placeholder="Buscar servicios..." />
+          <button type="submit">Buscar</button>
+        </form>
+      </section>
+      <nav>
+        <ul>
+          <li><a href="Servicios.html">Servicios</a></li>
+          <li><a href="Servidor (2).html">Unete</a></li>
+          <li><a href="Usuario2.html">Registrarse</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <body>
+    <div class="container">
+      <div class="product">
+        <img id="productImage" src="p.jpg" alt="Nombre del artículo" />
+        <button class="image-button" onclick="changeImage()">&#9658;</button>
+        <button class="image-button2" onclick="changeImage2()">&#9668;</button>
+        <div class="product-info">
+          <div class="product-description">
+            <h2>Luis Fierro</h2>
+            <p>
+              Descripción del artículo. Soy un profecional capasitado en la
+              operacion y manejo de equipos y maquinaria pesada.
+            </p>
+            <p>Ubicación: Guadalajara,jalisco</p>
+            <p>Años de Experiencia: 22 Años</p>
+          </div>
+          <div class="product-contact">
+            <p>
+              <img
+                class="imgwha"
+                id="productImage"
+                src="Waza.png"
+                alt="Nombre del artículo"
+              />
+              Numero de contacto: (427) 132-3445
+            </p>
+          </div>
+
+          <div class="product-rating">
+            <p>Valoración: ★★★★☆</p>
+          </div>
+          <a href="pay.html">
+            <div data-tooltip="Contrata ya" class="button">
+              <div class="button-wrapper">
+                <div class="text">Pagar</div>
+                <span class="icon" href="pay.html">
+                  <svg
+                    viewBox="0 0 16 16"
+                    class="bi bi-cart2"
+                    fill="currentColor"
+                    height="16"
+                    width="16"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l1.25 5h8.22l1.25-5H3.14zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"
+                    ></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+          <div class="product-comments">
+            <h3>Comentarios</h3>
+            <p>Comentario 1: Muy buen producto.</p>
+            <h6>Estrellas: ★★★★★</h6>
+            <p>Comentario 2: Excelente relación calidad-precio.</p>
+            <h6>Estrellas: ★★★★☆</h6>
+          </div>
+          <!-- Puedes agregar más comentarios aquí -->
+        </div>
+      </div>
+    </div>
+    <script>
+      const images = ["p.jpg", "p2.jpg", "p3.jpg", "p4.jpg"]; // Agrega aquí las rutas de las imágenes adicionales
+      let currentIndex = 0;
+      const productImage = document.getElementById("productImage");
+
+      function changeImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        productImage.src = images[currentIndex];
+      }
+      function changeImage2() {
+        if (currentIndex != 0) {
+          currentIndex = (currentIndex - 1) % images.length;
+          productImage.src = images[currentIndex];
+        }
+      }
+    </script>
+  </body>
+</html>

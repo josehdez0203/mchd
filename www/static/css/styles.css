@@ -1,0 +1,437 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: BLACK;
+  color: #fff;
+  padding: 1px;
+  position: relative;
+  width: 100%;
+  gap: 1em;
+  backdrop-filter: blur(4px);
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+.logo {
+  margin-right: 15px;
+  margin-bottom: 35px;
+  height: fit-content;
+  margin-left: 40px;
+}
+
+.logo img {
+  max-width: 120px; /* Tamaño máximo del logo */
+  height: auto;
+  text-align: unset;
+  max-height: 130px;
+  transition: 1s ease;
+}
+
+.logo img:hover {
+  -webkit-transform: rotateZ(-10deg);
+  -ms-transform: rotateZ(-10deg);
+  transform: rotateZ(-10deg);
+  transition: 1s ease;
+  -webkit-filter: blur(1px);
+  transition: 1s ease;
+}
+
+.buscar {
+  background-color: black;
+  border-radius: 5px;
+  padding: 10px;
+  width: 70%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+  position: absolute;
+  display: inline-block;
+  margin-left: 200px;
+  margin-top: 30px;
+}
+
+.buscar h2 {
+  font-size: 20px;
+}
+
+.buscar form {
+  display: flex;
+}
+
+.buscar input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.buscar button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.buscar button:hover {
+  color: #fff; /* color del hover */
+  background-color: #202020;
+}
+
+.button2 {
+  position: absolute;
+  font-family: sans-serif;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+  border: none;
+  color: #ffffff;
+  text-align: center;
+  font-size: 28px;
+  padding: 10px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-top: 35px;
+  margin-left: -30px;
+}
+
+.button2 span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button2 span:after {
+  content: "👊";
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -10px;
+  transition: 0.5s;
+}
+
+.button2:hover span {
+  padding-right: 30px;
+  padding-bottom: 10px;
+}
+
+.button2:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+nav {
+  background-color: black;
+  padding: 0.1px;
+  font-size: 15px;
+  text-align: end;
+  margin-right: 80px;
+  height: 0px;
+}
+nav ul {
+  list-style-type: upper-roman;
+  margin-top: -15px;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 2px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s; /* Transición */
+  padding: 10px;
+}
+
+nav a:hover {
+  color: #fff; /* color del hover */
+  background-color: #202020;
+}
+
+main {
+  padding: 20px;
+}
+
+/* Estilos para el formulario de búsqueda */
+.search {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+  margin-top: 150px;
+}
+
+.search h2 {
+  font-size: 20px;
+}
+
+.search form {
+  display: flex;
+}
+
+.search input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.search button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.footer-nav {
+  background-color: #fff;
+  text-align: left;
+  color: #fff;
+  padding: 1px;
+  margin-left: 15px;
+  font-size: 10px;
+  margin-top: 10px;
+}
+
+.footer-nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-nav ul li {
+  display: inline;
+  margin-right: 1px;
+  padding: 1px;
+}
+
+.footer-nav a {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s;
+  border: 1px solid gray;
+}
+
+/* Estilos para el hover de los enlaces del pie de página */
+.footer-nav a:hover {
+  color: #fff; /* color del hover */
+  background-color: #0b2917;
+}
+form {
+  display: inline-block; /* Para que el formulario no ocupe todo el ancho */
+  margin-right: 1px;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+select {
+  padding: 10px;
+  padding-right: 1px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #333;
+  font-size: 10px;
+}
+select:hover {
+  color: #fff; /* color del hover */
+  background-color: #0b2917;
+}
+
+/* Estilo para las opciones de la lista desplegable */
+select option {
+  font-size: 12px;
+  background-color: aliceblue;
+  color: black;
+}
+/* Estilos para la sección de servicios */
+
+.services {
+  background-color: #fff;
+  border-radius: 5px;
+
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  box-shadow: 15px 0 40px -30px white;
+  margin: calc(50vh - 220px) auto;
+
+  background-color: white;
+  border-left: 5px solid #222;
+  border-right: 5px solid #222;
+  padding-left: 10px;
+  flex: 2;
+
+  padding: 10px;
+  margin-top: 150px;
+  display: block;
+}
+.all {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: black;
+}
+
+.services h2 {
+  font-size: 20px;
+}
+.services {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.services h2 {
+  font-size: 20px;
+}
+
+.service {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.service-content {
+  display: flex;
+}
+
+.service img {
+  max-width: 250px;
+  height: inherit;
+}
+
+.service-details {
+  flex: 1;
+  padding: 20px;
+}
+
+.service h3 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.service p {
+  margin: 5px 0;
+}
+
+.service button {
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.service button:hover {
+  background-image: url(https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/1200px-Flag_of_Mexico.svg.png);
+}
+/* Estilos para el pie de página */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+}
+#icono {
+  height: 3rem;
+  width: 3rem;
+  line-height: 3rem;
+  text-align: center;
+  border-radius: 50%;
+  color: #d1d1d1;
+  margin-bottom: 1rem;
+  background: #008f39;
+  font-size: 2rem;
+}
+
+.categorias {
+  flex: 1;
+  background-color: black;
+  padding: 10px;
+  margin: 10px;
+  margin-top: -10px;
+}
+
+.categorias h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #bfe1f1;
+  display: block;
+  width: 300px;
+  height: 28px;
+  background-color: white;
+  border-left: 5px solid #222;
+  border-right: 5px solid #222;
+  padding-left: 10px;
+  text-decoration: none;
+  color: black;
+  margin-left: 40px;
+  border-radius: 8px;
+  box-shadow: 0 0 40px -6px white;
+}
+
+.categorias ul {
+  list-style: none;
+}
+
+.categorias ul li {
+  font-family: Georgia, serif, Times;
+  font-size: 18px;
+}
+
+.categorias ul li a {
+  display: block;
+  width: 300px;
+  height: 28px;
+  background: white;
+  border-left: 5px solid #222;
+  border-right: 5px solid #222;
+  padding-left: 10px;
+  text-decoration: none;
+  color: black;
+  border-radius: 8px;
+  box-shadow: 0 0 40px -6px white;
+}
+
+.categorias ul li a:hover {
+  -moz-transform: rotate(-5deg);
+  -moz-box-shadow: 10px 10px 20px #000000;
+  -webkit-transform: rotate(-5deg);
+  -webkit-box-shadow: 10px 10px 20px #000000;
+  transform: rotate(4deg);
+  box-shadow: 10px 10px 20px #000000;
+  margin-left: 10px;
+}
+@media only screen and (max-width: 1000px) {
+  .buscar,
+  .info {
+    width: 30%;
+    margin-left: -2px;
+  }
+}

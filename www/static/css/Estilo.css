@@ -1,0 +1,175 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: BLACK;
+  color: #fff;
+  padding: 10px;
+  position: fixed;
+  width: 100%;
+}
+
+.logo {
+  margin-right: 15px;
+  margin-bottom: 35px;
+  height: fit-content;
+}
+
+.logo img {
+  max-width: 150px; /* Tamaño máximo del logo */
+  height: auto;
+  text-align: unset;
+}
+
+nav {
+  background-color: black;
+  padding: 0.1px;
+  font-size: 15px;
+  text-align: end;
+  margin-top: -80px;
+}
+nav ul {
+  list-style-type: upper-roman;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 2px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s; /* Transición */
+  padding: 10px;
+}
+
+nav a:hover {
+  color: #fff; /* color del hover */
+  background-color: #202020;
+}
+.Central img {
+  width: 100%;
+  text-align: center;
+}
+
+.info {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  padding: 400px;
+}
+
+.info .infocenter {
+  background-color: white;
+  padding: 300px;
+  width: 100px;
+  text-align: center;
+  position: inherit;
+  margin-left: -300px;
+  margin-top: -200px;
+
+  border-color: rgb(39, 39, 39);
+  border-width: 2px;
+  border-style: inset;
+}
+
+.info .infocenter2 {
+  background-color: rgb(0, 0, 0);
+  padding: 300px;
+  width: 100px;
+  text-align: center;
+  position: inherit;
+  margin-left: 200px;
+  margin-top: -200px;
+
+  border-color: white;
+  border-width: 2px;
+  border-style: inset;
+}
+
+main {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+}
+
+/* Estilos para categorías */
+.categorias {
+  flex: 1;
+  background-color: #ddd;
+  padding: 10px;
+  margin: 10px;
+}
+
+.categorias h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.categorias ul {
+  padding-left: 0;
+}
+
+.categorias ul li {
+  margin-bottom: 5px;
+}
+
+/* Estilos para productos */
+.productos {
+  flex: 2;
+  background-color: #fff;
+  padding: 10px;
+  margin: 10px;
+}
+
+.productos h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.producto {
+  border: 1px solid #ddd;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.producto img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #ccc;
+}
+
+.producto h3 {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.producto p {
+  margin: 5px 0;
+}
+
+.producto a {
+  text-decoration: none;
+  background-color: #333;
+  color: #fff;
+  padding: 5px 10px;
+  display: inline-block;
+  border-radius: 3px;
+}
+
+.producto a:hover {
+  background-color: #555;
+}
+
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #202020;
+  color: #fff;
+}

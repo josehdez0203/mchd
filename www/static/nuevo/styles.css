@@ -1,0 +1,229 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: BLACK;
+  color: #fff;
+  padding: 15px;
+  display: flex;
+  text-align: end;
+  position: relative;
+}
+
+.logo {
+  margin-bottom: 10px;
+  margin-right: 15px;
+  height: auto;
+  text-align: start;
+}
+
+.logo img {
+  max-width: 150px; /* Tamaño máximo del logo */
+  height: auto;
+}
+
+nav {
+  text-align: right;
+  background-color: black;
+  padding: 0.1px;
+  font-size: 15px;
+}
+nav ul {
+  list-style-type: none;
+}
+
+nav ul li {
+  display: inline;
+  margin-right: 2px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #fff;
+  transition: color 0.3s; /* Transición */
+  padding: 10px;
+}
+
+nav a:hover {
+  color: #fff; /* color del hover */
+  background-color: #0b2917;
+}
+
+main {
+  padding: 20px;
+}
+
+/* Estilos para el formulario de búsqueda */
+.search {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0);
+}
+
+.search h2 {
+  font-size: 20px;
+}
+
+.search form {
+  display: flex;
+}
+
+.search input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.search button {
+  background-color: #20805f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.footer-nav {
+  background-color: #fff;
+  text-align: left;
+  color: #fff;
+  padding: 1px;
+  margin-left: 15px;
+  font-size: 10px;
+}
+
+.footer-nav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-nav ul li {
+  display: inline;
+  margin-right: 1px;
+  padding: 1px;
+}
+
+.footer-nav a {
+  text-decoration: none;
+  color: black;
+  transition: color 0.3s;
+  border: 1px solid gray;
+}
+
+/* Estilos para el hover de los enlaces del pie de página */
+.footer-nav a:hover {
+  color: #fff; /* color del hover */
+  background-color: #0b2917;
+}
+form {
+  display: inline-block; /* Para que el formulario no ocupe todo el ancho */
+  margin-right: 1px;
+}
+
+label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+select {
+  padding: 10px;
+  padding-right: 1px;
+  border: 1px solid gray;
+  border-radius: 3px;
+  background-color: #fff;
+  color: #333;
+  font-size: 10px;
+}
+select:hover {
+  color: #fff; /* color del hover */
+  background-color: #0b2917;
+}
+
+/* Estilo para las opciones de la lista desplegable */
+select option {
+  font-size: 12px;
+  background-color: aliceblue;
+  color: black;
+}
+/* Estilos para la sección de servicios */
+
+.services {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.services h2 {
+  font-size: 20px;
+}
+.services {
+  background-color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.services h2 {
+  font-size: 20px;
+}
+
+.service {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.service-content {
+  display: flex;
+}
+
+.service img {
+  max-width: 250px;
+  height: inherit;
+}
+
+.service-details {
+  flex: 1;
+  padding: 20px;
+}
+
+.service h3 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.service p {
+  margin: 5px 0;
+}
+
+.service button {
+  background-color: #20805f;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+/* Estilos para el pie de página */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+}

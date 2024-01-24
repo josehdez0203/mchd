@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <title>Usuario MCHD</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="formulario.css" />
+  </head>
+  <body>
+    <form class="formulario" action="AguileraExam.php" method="post">
+        <div>
+            <label>Nombre: </label><input type="text" required/>
+            </div>
+
+            <div>
+                <label>Apellido: </label><input type="text" required/>
+                </div>
+    
+
+          <div> <label> Direccion: </label>  <input type="text" name="loc" placeholder="Ej: Av. Bolívar 635" required />
+          </div> 
+
+
+          <div> <label>Genero: </label> <br />
+            <select name="sucu" size="2">
+              <option value="Masculino" aria-checked="true">Masculino.</option>          
+              <option value="Femenino">Femenino.</option>
+            </select>
+        </div>
+
+
+     
+      <div>
+        <label>Teléfono</label>
+        <input
+          name="telefono"
+          type="tel"
+          placeholder="Ej. 3538899999"
+          pattern="[0-9]{10}"
+          required>
+        </div>
+
+
+        <div>
+            <label>Email:</label><input type="email" value="" name="cor" required/>
+          </div>
+
+          <div> <label> Contraseña: </label>  <input type="password" name="cont" placeholder="*****" required />
+          </div>
+
+          
+
+        
+      
+      <div><input type="submit" value="Envia Datos" /></div>
+      <div><input type="reset" value="Reiniciar" /></div>
+    </form>
+  </body>
+</html>
