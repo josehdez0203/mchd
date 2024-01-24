@@ -1,5 +1,5 @@
+<?php include "./partes/head.php" ?>
 <?php include "./partes/header.php" ?>
-<?php include "./partes/buscar.php" ?>
     <section class="content sau" id="esp">
       <div class="box-container">
         <div class="slide">
@@ -83,7 +83,7 @@
           <span> SERVICIOS </span>
         </button>
       </a>
-    </section>
+    </section> 
     <div class="info">
       <div class="infocenter">
         <h1>Misión</h1>
@@ -98,15 +98,5 @@ usuarios, para garantizar el mejor servicio y la satisfacción del usuario.
         amplio catálogo online.
       </div>
     </div>
-
-    <footer>
-      <ul>
-        <h4>© MCHD S.A de C.V</h4>
-        <h4>Mexicanos Chambeandole Duro</h4>
-        <i class="fab fa-whatsapp" id="icono"></i>
-        <i class="fab fa-instagram" id="icono"></i>
-        <i class="fab fa-facebook" id="icono"></i>
-      </ul>
-    </footer>
-  </body>
-</html>
+<?php include "./partes/footer.php" ?>
+    

@@ -9,16 +9,19 @@ header {
   background-color: BLACK;
   color: #fff;
   padding: 1px;
-  position: relative;
-  width: 100%;
   gap: 1em;
   backdrop-filter: blur(4px);
   position: fixed;
   width: 100%;
   z-index: 3;
 }
+header .menu {
+  display: flex;
+  align-content: space-between;
+  position: relative;
+}
 
-.logo {
+.menu .logo {
   margin-right: 15px;
   margin-bottom: 35px;
   height: fit-content;
@@ -42,17 +45,17 @@ header {
   transition: 1s ease;
 }
 
-.search {
+.menu .search {
   background-color: black;
   border-radius: 5px;
   padding: 10px;
   width: 70%;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0);
-  position: absolute;
-  display: inline-block;
+  /* position: absolute; */
+  /* display: inline-block; */
   margin-left: 200px;
   margin-top: 30px;
-  z-index: 12;
+  z-index: 10;
 }
 
 .search h2 {
@@ -91,13 +94,19 @@ nav {
   background-color: black;
   padding: 0.1px;
   font-size: 15px;
-  text-align: end;
-  margin-right: 80px;
+  /* text-align: end; */
+  /* margin-right: 80px; */
   height: 0px;
+  width: 100%;
+  position: absolute;
+  top: 118px;
+  /* right: 10px; */
+  z-index: 15;
 }
 nav ul {
-  list-style-type: upper-roman;
-  margin-top: -15px;
+  list-style-type: none;
+  text-align: center;
+  /* margin-top: -9px; */
 }
 
 nav ul li {

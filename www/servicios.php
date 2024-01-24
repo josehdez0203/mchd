@@ -1,43 +1,5 @@
-<!DOCTYPE html>
-<html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MCHD</title>
-    <link rel="stylesheet" href="Estilo 1.css" />
-      <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
-    />
-  </head>
-  <body style="background-color: white">
-    <header>
-      <div class="logo">
-        <a href="index%20MCHD.html">
-          <img src="Logo%20(4).png" alt="MCHD" /><button
-            class="button2"
-            style="vertical-align: middle"
-          >
-            <span>MCHD </span>
-          </button>
-        </a>
-
-        <section class="search">
-          <form>
-            <input type="text" placeholder="Buscar servicios..." />
-            <button type="submit">Buscar</button>
-          </form>
-        </section>
-        <nav>
-          <ul>
-            <li><a href="#">Servicios</a></li>
-            <li><a href="Servidor (2).html">Unete</a></li>
-            <li><a href="Usuario2.html">Registrarse</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
-
+<?php include "./partes/head.php" ?>
+<?php include "./partes/header.php" ?>
     <main>
       <section class="categorias">
         <h2>Categorías</h2>
@@ -150,15 +112,4 @@
         <!-- Agrega más productos aquí -->
       </section>
     </main>
-
-    <footer>
-     <ul>
-        <h4>© MCHD S.A de C.V</h4>
-        <h4>Mexicanos Chambeandole Duro</h4>
-        <i class="fab fa-whatsapp" id="icono"></i>
-        <i class="fab fa-instagram" id="icono"></i>
-        <i class="fab fa-facebook" id="icono"></i>
-      </ul>
-    </footer>
-  </body>
-</html>
+<?php include "./partes/footer.php" ?>
