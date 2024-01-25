@@ -2,11 +2,8 @@
   <div class="menu">
     <div class="logo">
       <a href="index.php">
-        <img src="./static/img/logo4.png" alt="MCHD" /><button
-          class="button2"
-          style="vertical-align: middle"
-        >
-        <span>MCHD </span>
+        <img src="./static/img/logo4.png" alt="MCHD" /><button class="button2" style="vertical-align: middle">
+          <span>MCHD </span>
         </button>
       </a>
     </div>
@@ -19,11 +16,11 @@
     <nav>
       <ul>
         <li><a href="servicios.php">Servicios</a></li>
-        <li><a href="servidor.php">Unete</a></li>
+        <li><a href="login.php">Entrar</a></li>
         <li><a href="usuario.php">Registrarse</a></li>
       </ul>
     </nav>
   </div>
 </header>
-<body>
 
+<body>
