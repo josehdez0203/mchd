@@ -1,25 +1,31 @@
 <?php  
-	error_reporting(E_ERROR | E_WARNING | E_PARSE | E_WARNING);
+	// error_reporting(E_ERROR | E_WARNING | E_PARSE | E_WARNING);
 	// error_reporting(0);
 
 
 	class Usuario{
+    private $id;
+    private $nombre;
 		private $email;
-		private $user;
-		private $pass;
-		private $id;
-		private $avatar = SYS_IMG_ASSETS.'usuariox.png';
-		private $correo = null;
+    private $tipo='usuario';
+    private $telefono;
+		private $password;
+		private $foto = SYS_IMG_ASSETS.'usuarios/usuariox.png';
+    private $direccion;
+    private $activo=0;
+    private $token;
+
 		private $db = null;
-		private $jwt = null;
-		
+		private $conf = null;
+
 
 		function __construct(){
-			$conf = new Config();
-			$this->db = new Conexion($conf->config['db']);
-			$this->correo = new Mail($conf->config['mail']);
-			$this->sistema = $conf->config['sistema']['nombre'];
-			$this->jwt = new JWT();
+			$this->conf = new Config();
+      // print_r($this->conf->config['db']);
+			$this->db = new Conexion($this->conf->config['db']);
+			$this->correo = new Mail($this->conf->config['mail']);
+			// $this->sistema = $conf->config['sistema']['nombre'];
+			// $this->jwt = new JWT();
 		}
 
 		private function Encript($string){
@@ -30,11 +36,22 @@
 			}
 			return md5($resultado);
 		}
+    private function headers(){
+      header('Access-Control-Allow-Origin: *');
+      header('Access-Control-Allow-Methods: POST, GET, PUT');
+      header ("Access-Control-Allow-Credentials: true");
+      header("Access-Control-Allow-Headers: Content-Type, Accept, Authorization, X-Requested-With, Origin, X-Auth-Token");
+      header("Content-Type: application/json; charset=UTF-8");
+      // header("Access-Control-Allow-Headers: X-PINGOTHER, Content-Type");
+      header("Access-Control-Max-Age: 3600"); //una hora (60*60)
+      //Cargamos sesion
+      session_start();
+    }
 
 		public function ApiLogin(){
-			$this->jwt->headers();
+			$this->conf->headers();
 			$data = json_decode(file_get_contents("php://input"));
-			write_log(1, $data);
+			// write_log(1, $data);
 			
 			if(!empty($data->user) and !empty($data->pass) ){
 				$this->user = $this->db->real_escape_string($data->user);
@@ -66,7 +83,7 @@
 							"vercreditos" => $datos['vercreditos']
 						);
 						$tokenData["conectado"] = $data->conectado;
-						write_log('jwt exp', $usuario->conectado);
+						// write_log('jwt exp', $usuario->conectado);
 						$token = $this->jwt->jwt_encode($tokenData);
 						http_response_code(201);
             echo json_encode(
@@ -104,7 +121,7 @@
 		}
 		
 		public function ApiRenovarToken(){
-			$this->jwt->headers();
+			$this->conf->headers();
 			// $data = json_decode(file_get_contents("php://input"));
 			$token = $this->jwt->checaToken();
 			// write_log(100, print_r($data));
@@ -132,108 +149,212 @@
         )
 			);
 		}
-
-		public function ApiRegistro(){
-			$this->jwt->headers();
-			$data = json_decode(file_get_contents("php://input"));
-			// write_log(00, json_encode($data));
-			try{
-				if(!empty($data->user) and !empty($data->pass) and !empty($data->email)){
-					$this->user = $this->db->real_escape_string($data->user);
-					$this->email = $data->email;
-					$this->pass = $this->Encript($data->pass);
-					$pass_enviable = $data->pass;
+public function ApiRegistro(){
+    $this->headers();
+    if($_POST){
+      try{
+				if(!empty($_POST['email']) and !empty($_POST['pass']) ){
+					$this->nombre = $this->db->real_escape_string($_POST['nombre']);
+					$this->email = $_POST['email'];
+          $this->telefono = $_POST['tel'];
+					$this->password = $this->Encript($_POST['pass']);
+					$pass_enviable = $_POST['pass'];
 					$host_link = $_SERVER['SERVER_NAME'];
-					$consulta = $this->db->query("SELECT * FROM usuarios WHERE usuario='$this->user' OR email='$this->email'");
-					echo "$consulta";
-					if($this->db->rows($consulta) == 0){ //insertamos el usuario nuevo
-						$hash = hash('sha512', $this->user.$this->email.$this->pass, false);
-						$consulta2 = $this->db->query("INSERT INTO usuarios(usuario, email, password, admin, avatar, activo, token, nombre, apellidos) values('$this->user', '$this->email', '$this->pass', 2, '$this->avatar', 0, '$hash', '', '')");
-						// falta redireccionar al nuevo usuario al index y decirle que cheque su email para activarse.
+					$consulta = $this->db->query("SELECT * FROM usuarios WHERE email='$this->email'");
+					// echo "$consulta";
+					if($this->db->rows($consulta) == 0){ // no hay usuario insertamos el usuario nuevo
+						$hash = hash('sha512', $this->nombre.$this->email.$this->password, false);
+            $consulta2 = $this->db->query("INSERT INTO 
+              usuarios(id, nombre, email, tipo, telefono, password, foto, direccion, activo, token) 
+            values(null, '$this->nombre', '$this->email', '$this->tipo', '$this->telefono', 
+                  '$this->password', '$this->foto','',  0, '$hash')");
 						if ($consulta2){
-							//----------- Configuracion del usuario -------------------
+							//----------- Configuracion del Email  -------------------
 							$this->correo->AddAddress($this->email);//correo destino
 							$this->correo->Subject = 'Registro en el sistema';//titulo
 							$this->correo->MsgHTML("Hola Bienvenido al sistema: <br>
 	      				Estas son tus credenciales:<br>
-				        <strong>Usuario: ".$this->user."</strong><br>
+				        <strong>Usuario: ".$this->email."</strong><br>
 				        <strong>Password: ".$pass_enviable." </strong><br>
-	      				<p>Espere un email para informale que su usuario esta activo, saludos</p>");
-			        if($this->correo->Send()){
+                <p>Haz click en el link para activar tu usuario</p>
+                <a href='$host_link/activar?id=$hash'>Activar usuario</a>
+                <p>Una vez activado tu usuario, ingresa a tu cuenta y actualiza tus datos, saludos</p>
+                ");
+              if($this->correo->Send()){
 			        	// set response code
 	  						http_response_code(200);
 		            echo json_encode(
-			            array(
+                  array(
+                      "code"=>200,
 			            		"ok"=> true,
 			                "message" => "Registro exitoso"
 			            )
 	   						); //registro correcto
 			        }
-			       	else{
-			            // set response code
-	  						http_response_code(200);
-		            echo json_encode(
-			            array(
-			            		"ok"=> true,
-			                "message" => "Registro exitoso, Problema al enviar email"
-			            )
-	   						); //fallo email
-			        }
+               else{
+                    // set response code
+                  http_response_code(200);
+                  echo json_encode(
+                    array(
+                      "code"=>200,
+                        "ok"=> false,
+                        "message" => "Registro exitoso, Problema al enviar email"
+                    )
+                  ); //fallo email
+                }
 						}
 						else{
-							$mensaje = $this->user." " .$this->email." ". $this->pass." ". $this->avatar ." ". $hash;
+							$mensaje = $this->nombre.", " .$this->email.", ". $this->password.", ". $this->foto ;
 							// set response code
-							http_response_code(400);
+							http_response_code(500);
 	            echo json_encode(
-		            array(
+                array(
+                  "code"=>500,
 		            		"ok" => false,
-		                "message" => "usuario existente",
+		                "message" => "Error en el servidor",
 		                "usuario" => $mensaje,
 		            )
-	 						); //registro correcto
+	 						); //registro incorrecto o problemas con BD
 						}
 					}
 					else{
 						$datos = $this->db->recorrer($consulta);
-						if(strtolower($this->user) == strtolower($datos['usuario'])){
-							// set response code
-							http_response_code(408);
-	            echo json_encode(
-		            array(
-		            		"ok"=> false,
-		                "message" => "Usuario existente"
-		            )
-	 						);
-						}
-						else{
 							// set response code
 							http_response_code(401);
 	            echo json_encode(
 		            array(
+                  "code"=> 401,
 		            		"ok"=> false,
 		                "message" => "Email existente"
 		            )
 	 						); //registro correcto
-						}
+						// }
 						$this->db->liberar($consulta);
 						$this->db->close();
 					}
 				}
 				else{
 					// set response code
-					http_response_code(500);
+          $this->headers();
+          header("Content-Type: application/json");
+					http_response_code(501);
 	        echo json_encode(
 	          array(
+              "code"=> 500,
 	          		"ok"=> false,
 	              "message" => "Datos vacios"
 	          )
 					); //registro correcto
 				}
+
+      }
+			catch(Exception $error){
+				echo $error->getMessage();
 			}
-			catch(Exception $login){
-				echo $login->getMessage();
-			}
-		}
+    }
+  }
+		// public function ApiRegistro(){
+  //     $this->headers();
+		// 	$data = json_decode(file_get_contents("php://input"));
+		// 	// $data = json_decode(file_get_contents("php://input"));
+  //     // print('JHC');
+  //     // print_r( $data);
+		// 	// echo json_encode($data);
+		// 	try{
+		// 		if(!empty($data->email) and !empty($data->pass) ){
+		// 			$this->nombre = $this->db->real_escape_string($data->nombre);
+		// 			$this->email = $data->email;
+  //         $this->telefono = $data->tel;
+		// 			$this->password = $this->Encript($data->pass);
+		// 			$pass_enviable = $data->pass;
+		// 			$host_link = $_SERVER['SERVER_NAME'];
+		// 			$consulta = $this->db->query("SELECT * FROM usuarios WHERE email='$this->email'");
+		// 			// echo "$consulta";
+		// 			if($this->db->rows($consulta) == 0){ // no hay usuario insertamos el usuario nuevo
+		// 				$hash = hash('sha512', $this->nombre.$this->email.$this->password, false);
+  //           $consulta2 = $this->db->query("INSERT INTO 
+  //             usuarios(id, nombre, email, tipo, telefono, password, foto, direccion, activo, token) 
+  //           values(null, '$this->nombre', '$this->email', '$this->tipo', '$this->telefono', 
+  //                 '$this->password', '$this->foto','',  0, '$hash')");
+		// 				if ($consulta2){
+		// 					//----------- Configuracion del Email  -------------------
+		// 					$this->correo->AddAddress($this->email);//correo destino
+		// 					$this->correo->Subject = 'Registro en el sistema';//titulo
+		// 					$this->correo->MsgHTML("Hola Bienvenido al sistema: <br>
+	 //      				Estas son tus credenciales:<br>
+		// 		        <strong>Usuario: ".$this->email."</strong><br>
+		// 		        <strong>Password: ".$pass_enviable." </strong><br>
+  //               <p>Haz click en el link para activar tu usuario</p>
+  //               <a href='$host_link/activar?id=$hash'>Activar usuario</a>
+  //               <p>Una vez activado tu usuario, ingresa a tu cuenta y actualiza tus datos, saludos</p>
+  //               ");
+  //             if($this->correo->Send()){
+		// 	        	// set response code
+	 //  						http_response_code(200);
+		//             echo json_encode(
+		// 	            array(
+		// 	            		"ok"=> true,
+		// 	                "message" => "Registro exitoso"
+		// 	            )
+	 //   						); //registro correcto
+		// 	        }
+  //              else{
+  //                   // set response code
+  //                 http_response_code(200);
+  //                 echo json_encode(
+  //                   array(
+  //                       "ok"=> false,
+  //                       "message" => "Registro exitoso, Problema al enviar email"
+  //                   )
+  //                 ); //fallo email
+  //               }
+		// 				}
+		// 				else{
+		// 					$mensaje = $this->nombre.", " .$this->email.", ". $this->password.", ". $this->foto ;
+		// 					// set response code
+		// 					http_response_code(500);
+	 //            echo json_encode(
+		//             array(
+		//             		"ok" => false,
+		//                 "message" => "Error en el servidor",
+		//                 "usuario" => $mensaje,
+		//             )
+	 // 						); //registro incorrecto o problemas con BD
+		// 				}
+		// 			}
+		// 			else{
+		// 				$datos = $this->db->recorrer($consulta);
+		// 					// set response code
+		// 					http_response_code(401);
+	 //            echo json_encode(
+		//             array(
+		//             		"ok"=> false,
+		//                 "message" => "Email existente"
+		//             )
+	 // 						); //registro correcto
+		// 				// }
+		// 				$this->db->liberar($consulta);
+		// 				$this->db->close();
+		// 			}
+		// 		}
+		// 		else{
+		// 			// set response code
+  //         $this->headers();
+  //         header("Content-Type: application/json");
+		// 			http_response_code(500);
+	 //        echo json_encode(
+	 //          array(
+  //             "code"=> 500,
+	 //          		"ok"=> false,
+	 //              "message" => "Datos vacios"
+	 //          )
+		// 			); //registro correcto
+		// 		}
+		// 	}
+		// 	catch(Exception $error){
+		// 		echo $error->getMessage();
+		// 	}
+		// }
 
 		public function ApiActualizaCuenta(){
 			$token = $this->jwt->checaToken();

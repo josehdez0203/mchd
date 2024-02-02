@@ -17,7 +17,7 @@
       <ul>
         <li><a href="servicios.php">Servicios</a></li>
         <li><a href="login.php">Entrar</a></li>
-        <li><a href="usuario.php">Registrarse</a></li>
+        <li><a href="registro.php">Registrarse</a></li>
       </ul>
     </nav>
   </div>

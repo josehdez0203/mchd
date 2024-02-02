@@ -10,11 +10,12 @@
     {
       $this->config = [
         'db' => [
-          'host' => 'localhost',
+          'host' => 'db',
           'port' => '3306',
           'dbname' => 'mchd',
           'user' => 'root',
           'pass' => 'test'
+          // 'socket' => '/run/mysqld/mysqld.sock'
         ],
         'mail' => [
           'IsSMTP' => 'IsSMTP()',
@@ -25,7 +26,7 @@
           'Host' => 'smtp.gmail.com',
           'Port' => '587',
           'Username' => 'josehernandezc@gmail.com',
-          'Password' => '',
+          'Password' => 'qxoqczvdumvhdcsh',
           'SetFrom' => 'josehernandezc@gmail.com',
           'FromName' => 'Administrador',            //Nombre del que lo manda
           'Sender' => 'josehernandezc@gmail.com',   //email de quien lo manda
@@ -34,5 +35,4 @@
       ];
     }
   }
-
   ?>

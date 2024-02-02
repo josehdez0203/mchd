@@ -2,8 +2,9 @@
 	class Conexion extends mysqli{
 		
 		function __construct($config){
-			parent::__construct($config['host'], 
-			$config['user'], $config['pass'], $config['dbname']);
+      parent::__construct($config['host'], $config['user'], 
+        $config['pass'], $config['dbname']);
+      // $this->set_charset('utf8');
 			$this->query('SET NAMES utf8');
 			$this->connect_errno ? die('Error de Conexion'): null;
 		}
