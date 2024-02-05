@@ -1,3 +1,7 @@
+<?php
+// session_start();
+// print_r($_SESSION);
+?>
 <header>
   <div class="menu">
     <div class="logo">
@@ -15,9 +19,21 @@
     </div>
     <nav>
       <ul>
+<?php
+if(isset($_SESSION['id'])) {
+    ?>
+<li><a href="servicios.php">Servicios</a></li>
+<li><a href="productos.php">Productos</a></li>
+<li><a href="cuenta.php">Cuenta</a></li>
+<?php
+} else {
+    ?>
         <li><a href="servicios.php">Servicios</a></li>
-        <li><a href="login.php">Entrar</a></li>
+        <li><a href="login.php">Ingresar</a></li>
         <li><a href="registro.php">Registrarse</a></li>
+<?php
+}
+?>
       </ul>
     </nav>
   </div>

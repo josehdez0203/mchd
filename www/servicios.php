@@ -1,115 +1,81 @@
-<?php include "./partes/head.php" ?>
-<?php include "./partes/header.php" ?>
-    <main>
+<?php
+session_start();
+include "./partes/head.php";
+include "./partes/header.php";
+?>
+    <main >
+<div class="main">
       <section class="categorias">
         <h2>Categorías</h2>
         <ul>
-          <li><a href="alba%C3%B1il.html">Albañil</a></li>
-          <li><a href="fontanero.html">Fontanero</a></li>
-          <li><a href="electricista.html">Electrisista</a></li>
-          <li><a href="mecanico.html">Mecanico</a></li>
-          <li><a href="pintor.html">Pintor</a></li>
-          <li><a href="carpintero.html">Carpintero</a></li>
-          <li><a href="soldador.html">Soldador</a></li>
-          <li>
-            <a href="operadordemaquinaspesados.html"
-              >Operador de maquienria pesada</a
-            >
-          </li>
-          <li><a href="conductores.html">Conductor</a></li>
-          <li><a href="meseros.html">Mesero</a></li>
-          <li><a href="Cocinero.html">Cocinero</a></li>
-          <li><a href="chef.html">Chef</a></li>
-          <li><a href="Animadores.html">Animadores</a></li>
-          <li><a href="bartender.html">Bartender</a></li>
-          <li><a href="estilista.html">Estilista</a></li>
-          <li><a href="Secretaria.html">Secretaria</a></li>
-          <li><a href="GuardaEspaldas.html">Guarda espaldas</a></li>
-          <li><a href="doctor personal.html">Doctor Personal</a></li>
-          <li><a href="tecnico electronico.html">Tecnicos Electronicos</a></li>
-          <li><a href="maquillista.html">Maquillista</a></li>
-          <li><a href="categoria1.html">Entrenador</a></li>
-          <li><a href="categoria1.html">Guitarrista</a></li>
-          <li><a href="categoria1.html">Baterista</a></li>
-          <li><a href="categoria1.html">Bajista</a></li>
-          <li><a href="categoria1.html">Pianista</a></li>
-          <li><a href="categoria1.html">Vocalista</a></li>
-          <li><a href="categoria1.html">Maestro de matematicas</a></li>
-          <li><a href="categoria1.html">Maestro de español</a></li>
-          <li><a href="categoria1.html">Maestro de idiomas</a></li>
-
-          <li><a href="categoria1.html">Programador</a></li>
-          <li><a href="categoria1.html">Acesor en trading</a></li>
-          <li><a href="categoria1.html">Productor de musica</a></li>
-
-          <li><a href="categoria1.html">Cerrajero </a></li>
-
-          <li><a href="categoria1.html"> Deshollinador</a></li>
-          <li><a href="categoria1.html"> Lavandero </a></li>
-          <li><a href="categoria1.html"> Artesano</a></li>
-
-          <li><a href="categoria1.html"> Tornero</a></li>
-          <li><a href="categoria1.html"> Editor </a></li>
-
-          <li><a href="categoria1.html"> Panadero</a></li>
-          <li><a href="categoria1.html"> Locutor </a></li>
-
-          <li><a href="categoria1.html"> Escritor </a></li>
-
-          <li><a href="categoria1.html"> Vendedor </a></li>
-          <li><a href="categoria1.html"> Peletero</a></li>
-          <li><a href="categoria1.html">Sastre </a></li>
-
-          <li><a href="categoria1.html"> Impresor</a></li>
-          <li><a href="categoria1.html">Pastor ganadero</a></li>
-
-          <li><a href="categoria1.html"> Vigilante </a></li>
-          <li><a href="categoria1.html"> Exterminador</a></li>
-
-          <li><a href="categoria1.html"> Peluquero</a></li>
-        </ul>
+<?php
+include "init.php";
+$categorias = new Categoria();
+$cat = $categorias->Listado("");
+for ($i = 0; $i < count($cat) ; $i++) {
+    $c = $cat[$i];
+    $id = $c['id'];
+    $nombre = $c['nombre'];
+    ?>
+  <li>
+    <a href="<?php echo '?categoria='.$id ?>">
+    <?php echo $nombre ?>
+    </a>
+  </li>
+<?php
+}
+?>
+      </ul>
       </section>
-
       <section class="productos">
         <h2>Los mejores del mes</h2>
         <div class="producto">
-          <img src="MaestroMatematicas.jfif" alt="Servicio 1" />
+          <div class="detalle">
           <h3>Luis Eduadordo Munguia</h3>
-
-          <p>Maestro de matematicas</p>
-          <a href="detalle_producto1.html">Ver detalles</a>
+          <h4>Maestro de matematicas</h4>
+          <p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+          nisi ut aliquip ex ...
+          <a href="static/img/detalle_producto1.html">Ver detalles</a>
+          </p>
+          </div>
+          <div class="imagen">
+            <img src="static/img/MaestroMatematicas.jfif" alt="Servicio 1" />
+          </div>
         </div>
-
         <div class="producto">
-          <img src="Alba%C3%B1ilDestacado.jfif" alt="Servicio 2" />
+          <div class="detalle">
           <h3>Javier Sosa Ramirez</h3>
-
-          <p>Albañil</p>
-          <a href="Contacto.html">Ver detalles</a>
+          <h4>Albañil</h4>
+          <p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+          nisi ut aliquip ex ...
+          <a href="static/img/Contacto.html">Ver detalles</a>
+          </p>
+          </div>
+          <div class="imagen">
+            <img src="static/img/Alba%C3%B1ilDestacado.jfif" alt="Servicio 2" />
+          </div>
         </div>
         <div class="producto">
-          <img src="Guitarrista.jfif" alt="Servicio 4" />
+          <div class="detalle">
           <h3>Sandra Alcarez Alvarez</h3>
-
-          <p>Guitarrista profesional</p>
-          <a href="detalle_producto1.html">Ver detalles</a>
-        </div>
-        <div class="producto">
-          <img src="Productor.jfif" alt="Servicio 3" />
-          <h3>Eliot Name</h3>
-
-          <p>Productor de musica</p>
-          <a href="detalle_producto1.html">Ver detalles</a>
-        </div>
-        <div class="producto">
-          <img src="Animador.jfif" alt="Servicio 4" />
-          <h3>Juan Escutia Barraza</h3>
-
-          <p>Animador</p>
-          <a href="detalle_producto1.html">Ver detalles</a>
+          <h4>Guitarrista profesional</h4>
+          <p class="descripcion">Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+          nisi ut aliquip ex ...
+          <a href="static/img/detalle_producto1.html">Ver detalles</a>
+          </p>
+          </div>
+          <div class="imagen">
+            <img src="static/img/Productor.jfif" alt="Servicio 3" />
+          </div>
         </div>
 
-        <!-- Agrega más productos aquí -->
       </section>
+</div>
     </main>
 <?php include "./partes/footer.php" ?>
