@@ -31,11 +31,14 @@ window.onload = function () {
       connect.onreadystatechange = function () {
         if (connect.readyState == 4 && connect.status == 200) {
           var respuesta = JSON.parse(connect.responseText);
+          console.log(respuesta);
           if (respuesta.code == 200 && respuesta.ok) {
             alert("Registro exitoso");
+            location.href = "/servicios.php";
           } else if (respuesta.code == 200 && !respuesta.ok) {
             alert("Registro exitoso, error al mandar el Email");
-          } else if (respuesta.code == 200 && !respuesta.ok) {
+            location.href = "/servicios.php";
+          } else if (respuesta.code == 500) {
             alert(respuesta.message);
           } else if (respuesta.code == 401) {
             alert(respuesta.message);
@@ -43,13 +46,13 @@ window.onload = function () {
             alert(respuesta.message);
           }
         }
-        connect.open("POST", "nuevo_usuario.php", true);
-        connect.setRequestHeader(
-          "Content-type",
-          "application/x-www-form-urlencoded",
-        );
-        connect.send(form);
       };
+      connect.open("POST", "nuevo_usuario.php", true);
+      connect.setRequestHeader(
+        "Content-type",
+        "application/x-www-form-urlencoded",
+      );
+      connect.send(form);
     } else if (pass != pass2) {
       alert("Las contraseñas no son iguales, intenta de nuevo");
     } else {

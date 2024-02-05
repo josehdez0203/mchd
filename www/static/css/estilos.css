@@ -246,14 +246,23 @@ nav a:hover {
 /*************** INICIA MAIN *************/
 
 .main {
-  margin: 8em auto 0em;
-  max-width: 800px;
+  margin: 10em auto 0em;
+  max-width: 1024px;
   padding: 20px;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   background-color: black;
   justify-content: center;
   align-content: center;
+}
+
+.activar {
+  margin-top: 2em;
+  height: 5em;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 /* formulario */
 .tabla {
@@ -322,45 +331,44 @@ p:before {
 }
 
 /* Estilos para categorías */
-.categorias {
+.main .categorias {
   flex: 1;
   background-color: black;
-  padding: 10px;
-  margin: 10px;
-  margin-top: 120px;
+  padding: 10px 0 0;
 }
 
 .categorias h2 {
+  background-color: white;
   font-size: 24px;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
   color: #bfe1f1;
   display: block;
-  width: 300px;
   height: 28px;
-  background-color: white;
   border-left: 5px solid #222;
   border-right: 5px solid #222;
   padding-left: 10px;
   text-decoration: none;
   color: black;
-  margin-left: 40px;
   border-radius: 8px;
   box-shadow: 0 0 40px -6px white;
 }
 
 .categorias ul {
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .categorias ul li {
   font-family: Georgia, serif, Times;
-  font-size: 18px;
+  font-size: 1.2em;
+  margin-bottom: 3px;
+  overflow: hidden;
 }
 
 .categorias ul li a {
   display: block;
-  width: 300px;
-  height: 28px;
+  height: 26px;
   background: white;
   border-left: 5px solid #222;
   border-right: 5px solid #222;
@@ -381,27 +389,20 @@ p:before {
   margin-left: 10px;
 }
 
-/* Estilos para productos */
-.productos {
-  flex: 2;
-  background-color: black;
+/********************* Estilos para productos ************************/
+.main .productos {
+  flex: 3;
   padding: 10px;
-  margin-top: -100px;
-  display: block;
   background-color: white;
-  border-left: 5px solid #222;
-  border-right: 5px solid #222;
   padding-left: 10px;
   text-decoration: none;
   color: black;
   border-radius: 15px;
   box-shadow: 15px 0 40px -30px white;
-  margin: calc(50vh - 220px) auto;
-  max-width: 50%;
-  margin-right: 150px;
 }
 
 .productos h2 {
+  text-align: center;
   font-size: 24px;
   margin-bottom: 10px;
 }
@@ -410,12 +411,22 @@ p:before {
   border: 1px solid black;
   padding: 10px;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
-
-.producto img {
-  max-width: 100%;
-  height: auto;
+.producto .detalle {
+  width: 70%;
+}
+.producto .imagen {
+  width: 30%;
+  margin: auto;
+  border-radius: 6px;
+}
+.producto .imagen img {
+  width: 100%;
   border: 1px solid #ccc;
+  border-radius: 6px;
 }
 
 .producto h3 {
@@ -430,7 +441,7 @@ p:before {
 .producto a {
   text-decoration: none;
   background-color: white;
-  color: black;
+  color: blue;
   padding: 5px 10px;
   display: inline-block;
   border-radius: 3px;
@@ -439,7 +450,11 @@ p:before {
 .producto a:hover {
   background-color: #555;
 }
-
+/* **********************CUENTA************************* */
+.cuenta {
+  background-color: white;
+  padding: 10px;
+}
 footer {
   text-align: center;
   padding: 10px;
