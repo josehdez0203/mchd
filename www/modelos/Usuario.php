@@ -93,20 +93,20 @@ class Usuario
                                 http_response_code(200);
                                 echo json_encode(
                                     array(
-                                    "code" => 200,
-                                    "ok" => true,
-                                    "message" => "Registro exitoso"
-                  )
+                                        "code" => 200,
+                                        "ok" => true,
+                                        "message" => "Registro exitoso"
+                                    )
                                 ); //registro correcto
                             } else {
                                 // set response code
                                 http_response_code(200);
                                 echo json_encode(
                                     array(
-                                    "code" => 200,
-                                    "ok" => false,
-                                    "message" => "Registro exitoso, Problema al enviar email"
-                  )
+                                        "code" => 200,
+                                        "ok" => false,
+                                        "message" => "Registro exitoso, Problema al enviar email"
+                                    )
                                 ); //fallo email
                             }
                         } else {
@@ -115,11 +115,11 @@ class Usuario
                             http_response_code(500);
                             echo json_encode(
                                 array(
-                                "code" => 500,
-                                "ok" => false,
-                                "message" => "Error en el servidor",
-                                "usuario" => $mensaje,
-                )
+                                    "code" => 500,
+                                    "ok" => false,
+                                    "message" => "Error en el servidor",
+                                    "usuario" => $mensaje,
+                                )
                             ); //registro incorrecto o problemas con BD
                         }
                     } else {
@@ -128,10 +128,10 @@ class Usuario
                         http_response_code(401);
                         echo json_encode(
                             array(
-                            "code" => 401,
-                            "ok" => false,
-                            "message" => "Email existente"
-              )
+                                "code" => 401,
+                                "ok" => false,
+                                "message" => "Email existente"
+                            )
                         ); //registro correcto
                         // }
                         $this->db->liberar($consulta);
@@ -144,10 +144,10 @@ class Usuario
                     http_response_code(501);
                     echo json_encode(
                         array(
-                        "code" => 500,
-                        "ok" => false,
-                        "message" => "Datos vacios"
-            )
+                            "code" => 500,
+                            "ok" => false,
+                            "message" => "Datos vacios"
+                        )
                     ); //registro correcto
                 }
             } catch (Exception $error) {
@@ -174,9 +174,9 @@ class Usuario
                     http_response_code(401);
                     echo json_encode(
                         array(
-                          "code" => 402,
-                          "ok" => false,
-                          "message" => "Usuario inactivo, necesitas activarlo desde tu email"
+                            "code" => 402,
+                            "ok" => false,
+                            "message" => "Usuario inactivo, necesitas activarlo desde tu email"
                         )
                     );
                 } else {
@@ -192,8 +192,8 @@ class Usuario
                     http_response_code(201);
                     echo json_encode(
                         array(
-                          "code" => 201,
-                          "ok" => true
+                            "code" => 201,
+                            "ok" => true
                         )
                     );
                 }
@@ -202,9 +202,9 @@ class Usuario
                 http_response_code(401);
                 echo json_encode(
                     array(
-                      "code" => 401,
-                      "ok" => false,
-                      "message" => "usuario o contraseña incorrectos"
+                        "code" => 401,
+                        "ok" => false,
+                        "message" => "usuario o contraseña incorrectos"
                     )
                 );
             }
@@ -215,43 +215,103 @@ class Usuario
             http_response_code(401);
             echo json_encode(
                 array(
-                "ok" => false,
-                "message" => "Datos vacios"
-              )
+                    "ok" => false,
+                    "message" => "Datos vacios"
+                )
+            );
+        }
+    }
+    public function ApiRecuperar()
+    {
+
+        if (!empty($_POST['email'])) {
+            $this->email = $_POST['email'];
+            $consulta = $this->db->query("SELECT * FROM usuarios WHERE email='$this->email' ");
+            if ($this->db->rows($consulta) > 0) {
+                $datos = $this->db->recorrer($consulta);
+                $token = $datos['token'];
+                $host_link = $_SERVER['SERVER_NAME'];
+                //----------- Configuracion del Email  -------------------
+                $this->correo->AddAddress($this->email); //correo destino
+                $this->correo->Subject = 'Recuperar contraseña'; //titulo
+                $this->correo->MsgHTML("<p>Haz click en el link para recuperar tu contraseña</p>
+                <a href='$host_link/api/cambiar_password.php?id=$token'>Cambiar contraseña</a>");
+                if ($this->correo->Send()) {
+                    // set response code
+                    http_response_code(200);
+                    echo json_encode(
+                        array(
+                            "code" => 200,
+                            "ok" => true,
+                            "message" => "Envio exitoso"
+                        )
+                    ); //registro correcto
+                } else {
+                    // set response code
+                    http_response_code(200);
+                    echo json_encode(
+                        array(
+                            "code" => 200,
+                            "ok" => false,
+                            "message" => "Problema al enviar email"
+                        )
+                    );
+                }
+            } else {
+                // throw new Exception(2); //error
+                http_response_code(401);
+                echo json_encode(
+                    array(
+                        "code" => 401,
+                        "ok" => false,
+                        "message" => "Correo no encontrado"
+                    )
+                );
+            }
+            $this->db->liberar($consulta);
+            $this->db->close();
+        } else {
+            // throw new Exception("Error Datos vacios");
+            http_response_code(401);
+            echo json_encode(
+                array(
+                    "ok" => false,
+                    "message" => "Datos vacios"
+                )
             );
         }
     }
 
-    public function ApiRenovarToken()
-    {
-        $this->conf->headers();
-        // $data = json_decode(file_get_contents("php://input"));
-        $token = $this->jwt->checaToken();
-        // write_log(100, print_r($data));
-        $datos = $token['usuario'];
-        $tiempo = time();
-        $tokenData =  array(
-          "id" => $datos->id,
-          "usuario" => $datos->usuario,
-          "email" => $datos->email,
-          "creditos" => $datos->creditos,
-          "admin" => $this->Encript($datos->admin . 'jhc'),
-          "avatar" => $datos->avatar,
-          "nombre" => $datos->nombre,
-          "apellidos" => $datos->apellidos,
-          "vercreditos" => $datos->vercreditos,
-          "conectado" => true
-        );
-        $token = $this->jwt->jwt_encode($tokenData);
-        http_response_code(201);
-        echo json_encode(
-            array(
-            "ok" => true,
-            "token" => $token,
-            "datos" => $tokenData
-      )
-        );
-    }
+    // public function ApiRenovarToken()
+    // {
+    //     $this->conf->headers();
+    //     // $data = json_decode(file_get_contents("php://input"));
+    //     $token = $this->jwt->checaToken();
+    //     // write_log(100, print_r($data));
+    //     $datos = $token['usuario'];
+    //     $tiempo = time();
+    //     $tokenData =  array(
+    //         "id" => $datos->id,
+    //         "usuario" => $datos->usuario,
+    //         "email" => $datos->email,
+    //         "creditos" => $datos->creditos,
+    //         "admin" => $this->Encript($datos->admin . 'jhc'),
+    //         "avatar" => $datos->avatar,
+    //         "nombre" => $datos->nombre,
+    //         "apellidos" => $datos->apellidos,
+    //         "vercreditos" => $datos->vercreditos,
+    //         "conectado" => true
+    //     );
+    //     $token = $this->jwt->jwt_encode($tokenData);
+    //     http_response_code(201);
+    //     echo json_encode(
+    //         array(
+    //             "ok" => true,
+    //             "token" => $token,
+    //             "datos" => $tokenData
+    //         )
+    //     );
+    // }
 
 
     // public function ApiActualizaCuenta()
@@ -470,57 +530,57 @@ class Usuario
     // }
 
     //====================Recuerar contraseña=============================
-    public function Recuperar($dato)
-    {
-        $consulta = $this->db->query("SELECT * FROM usuarios where usuario = '$dato' OR email = '$dato'");
-        if ($this->db->rows($consulta) > 0) {
-            $reg = $consulta->fetch_assoc();
-            $this->id = $reg['id'];
-            $this->user = $reg['usuario'];
-            $this->email = $reg['email'];
-            $host_link = $_SERVER['SERVER_NAME'];
-            $hash = hash('sha512', $this->user . $this->email, false);
-            $consulta2 = $this->db->query("UPDATE usuarios SET activo = 1, token='$hash' WHERE id = $this->id");
-            if ($consulta2) {
-                //----------- Configuracion del usuario -------------------
-                $this->correo->AddAddress($this->email, $this->user); //correo destino
-                $this->correo->Subject = 'CBTis 12: cambiar contraseña'; //titulo
-                $this->correo->MsgHTML("Hola: <strong>Usuario: " . $this->user . "</strong>
-		        <p>Para actualizar tu password de usuario de CBTis 12, ingresa en este link <a href='" . $host_link . "/actualizar/" . $hash . "'>Actualizar</a></p>");
-                if ($this->correo->Send()) {
-                    //echo 1; //registro correcto
-                    return  array('mensaje' =>  "Se envió un link al usuario:<strong> $this->user</strong>,  para cambiar la contraseña!", 'status' => '1', 'link' => '/');
-                } else {
-                    echo "Error: no se envió el mensaje";
-                }
-            } else {
-                throw new Exception('No se envió el Email');
-            }
-        } else {
-            return  array('mensaje' =>  "Error,  No existe usuario o Email!", 'status' => '0', 'link' => '/recuperar');
-        }
-    }
+    // public function Recuperar($dato)
+    // {
+    //     $consulta = $this->db->query("SELECT * FROM usuarios where usuario = '$dato' OR email = '$dato'");
+    //     if ($this->db->rows($consulta) > 0) {
+    //         $reg = $consulta->fetch_assoc();
+    //         $this->id = $reg['id'];
+    //         $this->user = $reg['usuario'];
+    //         $this->email = $reg['email'];
+    //         $host_link = $_SERVER['SERVER_NAME'];
+    //         $hash = hash('sha512', $this->user . $this->email, false);
+    //         $consulta2 = $this->db->query("UPDATE usuarios SET activo = 1, token='$hash' WHERE id = $this->id");
+    //         if ($consulta2) {
+    //             //----------- Configuracion del usuario -------------------
+    //             $this->correo->AddAddress($this->email, $this->user); //correo destino
+    //             $this->correo->Subject = 'CBTis 12: cambiar contraseña'; //titulo
+    //             $this->correo->MsgHTML("Hola: <strong>Usuario: " . $this->user . "</strong>
+    // 	        <p>Para actualizar tu password de usuario de CBTis 12, ingresa en este link <a href='" . $host_link . "/actualizar/" . $hash . "'>Actualizar</a></p>");
+    //             if ($this->correo->Send()) {
+    //                 //echo 1; //registro correcto
+    //                 return  array('mensaje' =>  "Se envió un link al usuario:<strong> $this->user</strong>,  para cambiar la contraseña!", 'status' => '1', 'link' => '/');
+    //             } else {
+    //                 echo "Error: no se envió el mensaje";
+    //             }
+    //         } else {
+    //             throw new Exception('No se envió el Email');
+    //         }
+    //     } else {
+    //         return  array('mensaje' =>  "Error,  No existe usuario o Email!", 'status' => '0', 'link' => '/recuperar');
+    //     }
+    // }
     //====================Activar usuario =============================
-    public function Verifica($id)
-    {
-        $consulta = $this->db->query("SELECT * FROM usuarios where token = '$id'");
-        if ($this->db->rows($consulta) > 0) {
-            $reg = $consulta->fetch_assoc();
-            if ($reg['activo'] == 1) {
-                $mensaje = $reg['nombre'];
-                echo "El usuario: $mensaje,  ya se encontraba activo!";
-            } else {
-                if ($this->db->query("UPDATE usuarios SET activo=1 where token = '$id'")) {
-                    $mensaje = $reg['nombre'];
-                    echo "El usuario: $mensaje,  se activó correctamente!";
-                } else {
-                    echo 'Sucedio un error al activar un usuario!';
-                }
-            }
-        } else {
-            echo 'El usuario que deseas activar no existe!';
-        }
-    }
+    // public function Verifica($id)
+    // {
+    //     $consulta = $this->db->query("SELECT * FROM usuarios where token = '$id'");
+    //     if ($this->db->rows($consulta) > 0) {
+    //         $reg = $consulta->fetch_assoc();
+    //         if ($reg['activo'] == 1) {
+    //             $mensaje = $reg['nombre'];
+    //             echo "El usuario: $mensaje,  ya se encontraba activo!";
+    //         } else {
+    //             if ($this->db->query("UPDATE usuarios SET activo=1 where token = '$id'")) {
+    //                 $mensaje = $reg['nombre'];
+    //                 echo "El usuario: $mensaje,  se activó correctamente!";
+    //             } else {
+    //                 echo 'Sucedio un error al activar un usuario!';
+    //             }
+    //         }
+    //     } else {
+    //         echo 'El usuario que deseas activar no existe!';
+    //     }
+    // }
 
     // public function Actualizar($id)
     // {

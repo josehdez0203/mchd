@@ -47,10 +47,10 @@ window.onload = function () {
           }
         }
       };
-      connect.open("POST", "nuevo_usuario.php", true);
+      connect.open("POST", "api/nuevo_usuario.php", true);
       connect.setRequestHeader(
         "Content-type",
-        "application/x-www-form-urlencoded",
+        "application/x-www-form-urlencoded"
       );
       connect.send(form);
     } else if (pass != pass2) {
