@@ -6,7 +6,6 @@ window.onload = function () {
     if (email != "") {
       console.log("verificando");
       var form = "email=" + email;
-
       console.log(form);
       connect = window.XMLHttpRequest
         ? new XMLHttpRequest()
@@ -18,7 +17,7 @@ window.onload = function () {
           var respuesta = JSON.parse(connect.responseText);
           console.log(respuesta);
           if (respuesta.code == 201 && respuesta.ok) {
-            console.log("Se envió un correo para recuperar contraseña");
+            alert("Se envió un correo para recuperar contraseña");
             location.href = "/index.php";
           } else if (respuesta.code == 401 && !respuesta.ok) {
             alert("Email incorrecto o no existe");
@@ -30,7 +29,7 @@ window.onload = function () {
       connect.open("POST", "api/checar_usuario.php", true);
       connect.setRequestHeader(
         "Content-type",
-        "application/x-www-form-urlencoded"
+        "application/x-www-form-urlencoded",
       );
       connect.send(form);
     } else {

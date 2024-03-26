@@ -29,7 +29,33 @@ header .menu {
   height: fit-content;
   margin-left: 40px;
 }
-
+.menu .foto {
+  width: 50px;
+  height: 50px;
+  border: 1px solid white;
+  border-radius: 50%;
+  position: absolute;
+  top: -20px;
+  right: 10px;
+  background-color: #777;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+  /* object-fit: contain; */
+}
+.menu .foto a {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.menu .foto img {
+  height: 100%;
+  border-radius: 50%;
+}
 .logo img {
   max-width: 120px; /* Tamaño máximo del logo */
   height: auto;
@@ -58,6 +84,7 @@ header .menu {
   margin-left: 200px;
   margin-top: 30px;
   z-index: 10;
+  display: flex;
 }
 
 .search h2 {
@@ -65,7 +92,6 @@ header .menu {
 }
 
 .search form {
-  display: flex;
 }
 
 .search input[type="text"] {
@@ -74,6 +100,8 @@ header .menu {
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  height: 40px;
+  color: #fff;
 }
 
 .search button {
@@ -85,6 +113,7 @@ header .menu {
   margin-left: 10px;
   cursor: pointer;
   font-size: 16px;
+  height: 40px;
 }
 
 .search button:hover {
@@ -123,7 +152,7 @@ nav a {
   padding: 10px;
 }
 
-nav a:hover {
+nav > ul a:hover {
   color: #fff; /* color del hover */
   background-color: #202020;
 }
@@ -254,15 +283,30 @@ nav a:hover {
   background-color: black;
   justify-content: center;
   align-content: center;
+  color: white;
+}
+.main h1 {
+  color: white;
 }
 
 .activar {
   margin-top: 2em;
+  padding: 50px;
   height: 5em;
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: rgb(61, 136, 98);
+  border-radius: 5px;
+}
+.activar #activar {
+  background-color: #222;
+  padding: 10px;
+  outline: none;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
 }
 /* formulario */
 .tabla {
@@ -364,6 +408,7 @@ p:before {
   font-size: 1.2em;
   margin-bottom: 3px;
   overflow: hidden;
+  transition: all 1s;
 }
 
 .categorias ul li a {
@@ -388,7 +433,19 @@ p:before {
   box-shadow: 10px 10px 20px #000000;
   margin-left: 10px;
 }
-
+.categorias .more {
+  color: white;
+  text-align: center;
+  margin: 10px 20px 0;
+  border: 1px solid;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.categorias .disabled {
+  color: grey;
+  cursor: not-allowed;
+}
 /********************* Estilos para productos ************************/
 .main .productos {
   flex: 3;
@@ -451,9 +508,48 @@ p:before {
   background-color: #555;
 }
 /* **********************CUENTA************************* */
-.cuenta {
+.main .cuenta {
+  /* position: relative; */
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  max-width: 1024px;
+  /* width: 100%; */
+  /* height: 100%; */
+}
+.tabla {
+  position: relative;
+}
+.cuenta .foto {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  border: 1px solid;
+  border-radius: 4px;
+  top: 5px;
+  right: 5px;
+  z-index: 2;
   background-color: white;
-  padding: 10px;
+}
+.foto img {
+  width: 100%;
+  object-fit: cover;
+  /* fill: grey; */
+}
+.tabla textarea {
+  height: 60px;
+  width: 100%;
+}
+.tabla span {
+  font-weight: bold;
+}
+.tabla #cuenta {
+  background-color: rgba(255, 0, 0, 0.5);
+  padding: 8px 12px;
+  /* border-radius: 5px; */
+  border: 2px solid black;
+  color: white;
+  text-decoration: none;
 }
 footer {
   text-align: center;
@@ -759,4 +855,268 @@ footer img {
     width: 100%;
     margin-left: -250px;
   }
+}
+/* MENU ADMIN */
+.admin {
+  display: flex;
+  flex-flow: row;
+  margin: 15em auto 0em;
+  max-width: 1024px;
+  padding: 20px;
+  height: calc(100vh - 15em - 80px);
+  background-color: #606c38;
+  border-radius: 10px;
+}
+.nav_admin {
+  position: static;
+  width: 120px;
+  height: 100%;
+  background-color: #283618;
+  flex: 1;
+  border-radius: 10px 0 0 10px;
+}
+.menu_admin {
+  list-style: none;
+  padding: 0;
+  color: white;
+}
+
+.menu_admin li {
+  margin: 10px;
+  display: block;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.menu_admin li:hover {
+  background-color: #606c38;
+}
+.admin_work {
+  background-color: #588157;
+  height: 100%;
+  flex: 5;
+  border-radius: 0 10px 10px 0;
+  display: flex;
+  flex-flow: column;
+}
+#titulo {
+  color: black;
+  text-align: center;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #283618;
+  flex: 1;
+}
+#work_area {
+  flex: 12;
+  margin: 5px 10px;
+  background-color: #dda15e;
+  padding: 2px 10px;
+  border-radius: 5px;
+}
+#work_area .tabla {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #606c38;
+}
+.tabla .row {
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+.row .titulo {
+  /* display: inline-block; */
+  margin-right: 10px;
+  font-weight: bold;
+  color: white;
+  border-bottom: 2px solid white;
+  text-align: left;
+}
+td .avatar {
+  width: 30px;
+  height: 30px;
+  /* border: 1px solid red; */
+  border-radius: 5px;
+}
+.avatar img {
+  height: 100%;
+  border-radius: 5px;
+}
+td .activo {
+  width: 30px;
+  height: 30px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.activo img {
+  height: 100%;
+  border-radius: 5px;
+}
+td .editar {
+  width: 30px;
+  height: 30px;
+  border: 1px solid;
+  border-radius: 5px;
+  padding: 2px;
+  cursor: pointer;
+}
+.editar img {
+  height: 100%;
+}
+
+#nav {
+  flex: 1;
+  margin: 5px;
+  background-color: #606c38;
+  padding: 2px 10px;
+  display: flex;
+  /* text-align: center; */
+}
+#nav input {
+  /* color: white; */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 12px;
+  /* width: 200px; */
+  flex: 3;
+}
+#nav button {
+  background-color: #283618;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0px 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+#nav button:hover {
+  background-color: #dda15e;
+  /* flex: 1; */
+}
+#nav .paginacion {
+  flex: 6;
+  /* border: 1px solid #283618; */
+  display: flex;
+  padding-left: 20px;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.paginacion div {
+  width: 15px;
+  height: 15px;
+  border: 1px solid #588157;
+  padding: 3px;
+  margin-right: 5px;
+  text-align: center;
+  color: #dda15e;
+  cursor: pointer;
+}
+.paginacion .active {
+  cursor: not-allowed;
+  color: #444;
+  border: 1px solid;
+}
+.modal {
+  display: none;
+  color: white;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+}
+.modal .forma {
+  background-color: #283618;
+  z-index: 3;
+  width: 300px;
+  /* height: 200px; */
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 2px solid;
+}
+.forma .header {
+  text-align: center;
+}
+.forma input,
+.forma textarea,
+select {
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  font-size: 1em;
+  width: 100%;
+  background-color: #283618;
+  margin: 5px;
+  box-sizing: border-box;
+}
+.forma textarea {
+  height: 90px;
+  font-family: Arial, sans-serif;
+  /* font-size: 1.1em; */
+}
+.forma select {
+  padding: 10px;
+}
+.forma .foto {
+  max-width: 300px;
+  max-height: 300px;
+  min-width: 200px;
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.forma .fotos {
+  background-color: red;
+  height: 100px;
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.fotos .imagen {
+  position: relative;
+  margin-right: 5px;
+}
+.fotos .imagen img {
+  height: 100%;
+}
+.fotos .imagen .cerrar {
+  position: absolute;
+  top: 2px;
+  right: 0px;
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+  border: 1px solid;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.forma .agregar-foto {
+  background-color: #dda15e;
+}
+.forma .footer {
+  text-align: right;
+}
+.footer .ok,
+.footer .cancel,
+.footer .eliminar,
+.agregar-foto {
+  color: white;
+  background-color: #588157;
+  margin-top: 9px;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.footer .eliminar {
+  background-color: tomato;
 }

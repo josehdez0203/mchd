@@ -41,14 +41,13 @@
         //     <input type="file" name="Imagen" placeholder="Imagen... " value="" />
         // </p-->
 
-        <button class="boton" id="enviar">Enviar</button>
-        <div class="pie">
-            <span class="fa fa-phone"></span>001 1023 567
-            <span class="fa fa-envelope-o"></span> MexChambDur@MCHD.com
-        </div>
+      <button class="boton" id="enviar">Enviar</button>
+      <div class="pie">
+        <span class="fa fa-phone"></span>001 1023 567
+        <span class="fa fa-envelope-o"></span> MexChambDur@MCHD.com
+      </div>
     </div>
-<div id="_AJAX_"></div>
-<!--/form-->
+  <div id="_AJAX_"></div>
 </div>
 <?php include "./partes/footer.php" ?>
 <script src="<?php echo 'static/js/registro.js' ?>"></script>

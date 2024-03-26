@@ -1,5 +1,8 @@
-<?php include "./partes/head.php" ?>
-<?php include "./partes/header.php" ?>
+<?php
+session_start();
+// print_r($_SESSION);
+include "./partes/head.php";
+ include "./partes/header.php" ?>
     <section class="content sau" id="esp">
       <div class="box-container">
         <div class="slide">

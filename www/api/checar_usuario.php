@@ -1,5 +1,4 @@
 <?php
-
-require "../init.php";
+  require "../init.php";
 $registro = new Usuario();
-$registro->ApiRegistro();
+$registro->ApiRecuperar();

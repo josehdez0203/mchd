@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCHD</title>
+    <link rel="icon" type="image.jpg" href="static/img/logo4.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="static/css/estilos.css" />
+  </head>
+  <header>
+    <div class="menu">
+      <div class="logo">
+        <a href="index.php">
+          <img src="static/img/logo4.png" alt="MCHD" /><button
+            class="button2"
+            style="vertical-align: middle"
+          >
+            <span>MCHD </span>
+          </button>
+        </a>
+      </div>
+      <div class="search">
+        <form>
+          <input type="text" placeholder="Buscar servicios..." />
+          <button type="submit">Buscar</button>
+        </form>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="servicios.php">Servicios</a></li>
+          <li><a href="productos.php">Productos</a></li>
+          <li><a href="cuenta.php">Cuenta</a></li>
+          <?php if($_SESSION['tipo']==='admin'){ ?>
+          <li><a href="admin.php">Administración</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <body>
+    <section class="admin">
+      <nav class="nav_admin">
+        <ul class="menu_admin">
+          <li data-table="usuarios">Usuarios</li>
+          <li data-table="categorias">Categorias</li>
+        </ul>
+      </nav>
+      <div class="admin_work">
+        <h1 id="titulo">Título</h1>
+        <div id="work_area">
+          <table></table>
+        </div>
+        <div id="nav">
+          <input type="text" id="text" />
+          <button id="buscar">Buscar</button>
+          <div class="paginacion">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+            <div>4</div>
+            <div>5</div>
+            <div>6</div>
+            <div>7</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <ul>
+        <h4>© MCHD S.A de C.V</h4>
+        <h4>Mexicanos Chambeandole Duro</h4>
+        <i class="fab fa-whatsapp" id="icono"></i>
+        <i class="fab fa-instagram" id="icono"></i>
+        <i class="fab fa-facebook" id="icono"></i>
+      </ul>
+    </footer>
+  </body>
+</html>
+<script src="static/js/admin.js"></script>

@@ -1,5 +1,4 @@
-<?php
-
+<?php 
 //Constantes del sistema
 define("SYS_PATH", "lib/");
 define("APP_CONFIG", "config/");
@@ -18,3 +17,4 @@ require SYS_PATH . 'Mail.php';
 require MODELS . 'Conexion.php';
 require MODELS . 'Usuario.php';
 require MODELS . 'Categoria.php';
+require MODELS . 'Token.php';
