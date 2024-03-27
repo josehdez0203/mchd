@@ -9,6 +9,7 @@ var texto = document.getElementById("texto");
 console.log("Inciando", productos, categorias);
 var more = document.querySelector("div.more");
 var pagina = 1;
+var objParametros = {};
 var ListaCategorias = [];
 var ListaProductos = [];
 console.log("🆎");
@@ -42,7 +43,11 @@ function llenarServicios() {
     h4.innerHTML = prod.titulo;
     var p = crear("p");
     var a = crear("a");
-    a.href = "servicios.php?id=" + prod.categoria_id;
+    a.href =
+      "servicios.php?categoria_id=" +
+      prod.categoria_id +
+      "&nombre=" +
+      prod.categoria;
     a.innerHTML = prod.categoria;
     p.appendChild(a);
     var desc = crear("p");
@@ -80,6 +85,7 @@ async function cargar_servicios(texto) {
   } else {
     sql = "api/servicios.php?pag=" + pagina + "&buscar=" + texto;
   }
+  console.log(sql);
   const respuesta = await fetch(sql);
   const datos = await respuesta.json();
   ListaProductos = [];
@@ -118,7 +124,7 @@ function llenarCategorias() {
     var a = document.createElement("a");
     a.setAttribute(
       "href",
-      "/servicios.php?id=" + cat.id + "&nombre=" + cat.nombre,
+      "/servicios.php?categoria_id=" + cat.id + "&nombre=" + cat.nombre,
     );
     a.innerHTML = cat.nombre;
     li.appendChild(a);
@@ -150,19 +156,24 @@ function paginar(pag, paginas) {
 
 more.onclick = cargar_mas;
 window.onload = function () {
-  var categoria_id = location.href;
-  var index = categoria_id.indexOf("?id=");
-  console.log(ListaCategorias);
-  if (index > 0) {
-    var nombre = categoria_id.indexOf("&");
-    categoriaActiva = categoria_id.substring(index + 4, nombre - 1);
-    console.log(categoriaActiva);
-    tituloAct.innerHTML =
-      "Categoría: " + decodeURI(categoria_id.substring(nombre + 8));
-  } else {
-    categoriaActiva = null;
-    tituloAct.innerHTML = "Los mejores del mes";
+  var inicio = location.href.indexOf("?");
+  let parametros = [];
+  if (inicio > -1) {
+    let todos = location.href.substring(inicio + 1).split("&");
+    todos.forEach((element) => {
+      ele = element.split("=");
+      parametros.push(ele);
+    });
+    objParametros = Object.fromEntries(parametros);
+    if (objParametros.categoria_id !== null) {
+      categoriaActiva = objParametros.categoria_id;
+      tituloAct.innerHTML =
+        "Los mejores de: " + decodeURI(objParametros.nombre);
+    }
   }
+  // console.log(objParametros);
+  console.log(inicio, objParametros);
+  console.log(ListaCategorias);
   console.log(categoriaActiva);
   cargar_categorias("");
   cargar_servicios("");

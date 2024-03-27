@@ -17,20 +17,20 @@ switch ($_SERVER['REQUEST_METHOD']) {
     #  Listado Categoria.
     // echo $_GET['id'];
     $cat=new Producto();
-    // if(isset($_GET['lista'])){
-    //   $res=$cat->Lista();
-    //   echo json_encode($res);
-    // }else 
     if(isset($_GET['id'])){
-      $res = $cat->Categoria($id);
       $id=$_GET['id'];
+      $res = $cat->Producto($id);
       echo json_encode($res);
     }else{
       $buscar="";
+      $categoria_id="";
       if(isset($_GET['buscar'])){
         $buscar=$_GET['buscar'];
       }
-      $res = $cat->ListadoServicios($buscar);
+      if(isset($_GET['categoria_id'])){
+        $categoria_id=$_GET['categoria_id'];
+      }
+      $res = $cat->ListadoServicios($buscar, $categoria_id);
       echo json_encode($res);
     }
     break;

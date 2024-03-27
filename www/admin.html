@@ -11,64 +11,59 @@
     />
     <link rel="stylesheet" href="static/css/estilos.css" />
   </head>
-  <header>
-    <div class="menu">
-      <div class="logo">
-        <a href="index.php">
-          <img src="static/img/logo4.png" alt="MCHD" /><button
-            class="button2"
-            style="vertical-align: middle"
-          >
-            <span>MCHD </span>
-          </button>
-        </a>
-      </div>
-      <div class="search">
-        <form>
-          <input type="text" placeholder="Buscar servicios..." />
-          <button type="submit">Buscar</button>
-        </form>
-      </div>
-      <nav>
-        <ul>
-          <li><a href="servicios.php">Servicios</a></li>
-          <li><a href="productos.php">Productos</a></li>
-          <li><a href="cuenta.php">Cuenta</a></li>
-          <?php if($_SESSION['tipo']==='admin'){ ?>
-          <li><a href="admin.php">Administración</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
   <body>
-    <section class="admin">
-      <nav class="nav_admin">
-        <ul class="menu_admin">
-          <li data-table="usuarios">Usuarios</li>
-          <li data-table="categorias">Categorias</li>
-        </ul>
-      </nav>
-      <div class="admin_work">
-        <h1 id="titulo">Título</h1>
-        <div id="work_area">
-          <table></table>
+    <header>
+      <div class="menu">
+        <div class="logo">
+          <a href="index.php">
+            <img src="static/img/logo4.png" alt="MCHD" /><button
+              class="button2"
+              style="vertical-align: middle"
+            >
+              <span>MCHD </span>
+            </button>
+          </a>
         </div>
-        <div id="nav">
-          <input type="text" id="text" />
-          <button id="buscar">Buscar</button>
-          <div class="paginacion">
-            <div>1</div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-            <div>5</div>
-            <div>6</div>
-            <div>7</div>
+        <div class="search">
+          <form>
+            <input type="text" placeholder="Buscar servicios..." />
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
+        <nav>
+          <ul>
+            <li><a href="servicios.php">Servicios</a></li>
+            <li><a href="productos.php">Productos</a></li>
+            <li><a href="cuenta.php">Cuenta</a></li>
+            <li><a href="admin.php">Administración</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <div class="main">
+      <div class="detalle-producto">
+        <div class="titulo">
+          <h2>Titulo del servicio</h2>
+        </div>
+        <div class="datos">
+          <div class="poster">
+            <img src="static/img/albañil1.jpg" />
+          </div>
+          <div class="texto">
+            <p>
+            Lorem ipsum dolor sit amet, qui minim labore adipisicing minim sint
+            cillum sint consectetur cupidatat.
+            </p>
           </div>
         </div>
+        <div class="carousel">
+          <div class="atras botones">&#60</div>
+          <div class="adelante botones">&#62</div>
+          <!-- <div class="caption">Salón</div> -->
+          <div class="imagen" style="background-image: url('');"></div>
+        </div>      
       </div>
-    </section>
+    </div>
     <footer>
       <ul>
         <h4>© MCHD S.A de C.V</h4>
@@ -79,5 +74,7 @@
       </ul>
     </footer>
   </body>
+  <script src="static/js/carousel.js">
+    
+  </script>
 </html>
-<script src="static/js/admin.js"></script>

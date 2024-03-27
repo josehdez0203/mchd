@@ -47,27 +47,27 @@ class Producto{
     return array('registros'=>$registros, 'total'=> $total["total"], 'paginas'=>$paginas, 'pag'=>$pag );
   }
 
-  public function ListadoServicios($buscar){
+  public function ListadoServicios($buscar, $categoria_id):Array{
     $regXpag=6;
     $pag=$_GET['pag'];
-    if(isset($_GET['categoria_id'])){
-      $categoria_id=$_GET['categoria_id'];
-    }
+    // if(isset($_GET['categoria_id'])){
+    //   $categoria_id=$_GET['categoria_id'];
+    // }
     // $buscar=$_GET['buscar'];
 
     if($buscar == "") {
       $sql = "SELECT productos.id as id, titulo, descripcion, usuarios.nombre, 
         categoria_id, categorias.nombre as categoria, poster FROM 
         productos JOIN usuarios ON usuario_id= usuarios.id JOIN categorias 
-        ON categoria_id= categorias.id ";
+        ON categoria_id=categorias.id ";
     } else {
       $sql = "SELECT productos.id as id, titulo, descripcion, usuarios.nombre, 
         categoria_id, categorias.nombre as categoria, poster FROM 
         productos JOIN usuarios ON usuario_id= usuarios.id JOIN categorias 
-        ON categoria_id= categorias.id WHERE titulo LIKE '%$buscar%' 
+        ON categoria_id=categorias.id WHERE titulo LIKE '%$buscar%' 
         OR categorias.nombre LIKE '%$buscar%' OR descripcion LIKE '%$buscar%' ";
     }
-    if(isset($categoria_id)){
+    if($categoria_id!=""){
       $sql=$sql ." AND categoria_id=".$categoria_id;
     }
     $sql=$sql ." ORDER BY titulo ASC LIMIT ".(($pag-1)*$regXpag). ",$regXpag";    
@@ -77,15 +77,18 @@ class Producto{
     if($this->db->rows($consulta)>0){
       while ($reg = $this->db->recorrer($consulta)) {
         // print_r($reg);
-        $registros[] = $reg;
+        $registros[]=$reg;
       }
     }
     if($buscar==""){
-      $sql = 'SELECT count(id) AS total FROM productos';
+      $sql = 'SELECT count(productos.id) AS total FROM productos JOIN usuarios ON usuario_id= usuarios.id JOIN categorias 
+        ON categoria_id= categorias.id';
     }else{
-      $sql = "SELECT count(id) AS total FROM productos WHERE titulo LIKE '%$buscar%'";
+      $sql = "SELECT count(productos.id) AS total FROM productos JOIN usuarios ON usuario_id= usuarios.id JOIN categorias 
+        ON categoria_id= categorias.id WHERE titulo LIKE '%$buscar%'
+      OR categorias.nombre LIKE '%$buscar%' OR descripcion LIKE '%$buscar%' ";
     }
-    if(isset($categoria_id)){
+    if($categoria_id!=""){
       if($buscar==""){
         $sql = $sql . " WHERE categoria_id=".$categoria_id;
       }else{
@@ -93,6 +96,7 @@ class Producto{
       }
 
     }
+    // echo  $sql;
     $consulta2=$this->db->query($sql);
     $total=$this->db->recorrer($consulta2);
     $paginas= ceil($total['total'] / $regXpag);
