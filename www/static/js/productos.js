@@ -146,6 +146,7 @@ async function aceptar() {
   var resp = await respuesta.json();
   console.log("resp", resp);
   modal.style.display = "none";
+  cargar_datos(text.value);
 }
 function cancelar() {
   console.log("cancelar");
@@ -223,6 +224,7 @@ async function eliminar() {
     cargar_datos();
   }
   modal.style.display = "none";
+  cargar_datos(text.value);
 }
 async function carga_categorias() {
   const response = await fetch("/api/categorias.php?lista=");

@@ -58,6 +58,7 @@ enviar.onclick = async function () {
   });
   const resp1 = await cambios.json();
   console.log(resp1);
+  alert("Usuario modificado");
 };
 
 foto.onchange = function () {

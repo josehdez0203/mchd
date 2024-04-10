@@ -48,7 +48,7 @@ const rango = (inicio = 0, fin = 1, paso = 1) =>
     (_, i) => inicio + i * paso,
   );
 async function cargar_datos(text) {
-  console.log("cargando datos " + tabla);
+  console.log("cargando datos " + tabla, pagina);
   let respuesta;
   let sql = "";
   if (tabla === "usuarios") {
@@ -240,6 +240,7 @@ async function aceptar() {
   var resp = await respuesta.json();
   console.log("resp", resp);
   modal.style.display = "none";
+  cargar_datos(text.value);
 }
 function cancelar() {
   console.log("cancelar");
@@ -255,6 +256,7 @@ creaCat.onclick = function () {
   modal.style.display = "flex";
   bBorrar.style.display = "none";
   catName.focus();
+  cargar_datos(text.value);
 };
 function modificar() {
   mode = "modificar";
@@ -277,7 +279,7 @@ async function eliminar() {
       method: "DELETE",
     });
     console.log("resp", await respuesta.json());
-    cargar_datos();
+    cargar_datos(text.value);
   }
   modal.style.display = "none";
 }

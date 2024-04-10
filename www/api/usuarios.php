@@ -11,7 +11,7 @@ switch ($_SERVER['REQUEST_METHOD']) {
     $usuarios = new Usuario($datos['nombre'], $datos['email'], $datos['tel'], $datos['pass']);
     $res = $usuarios->ApiRegistro();
 
-    echo $res;
+    // echo $res;
     switch ($res) {
       case 201:
         echo json_encode(

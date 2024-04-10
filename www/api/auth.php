@@ -25,7 +25,11 @@ switch ($_SERVER['REQUEST_METHOD']) {
         $_SESSION['direccion'] = $usuario['direccion'];
         $_SESSION['info'] = $usuario['info'];
         echo json_encode($res);
-      default:
+        break;
+      case 401:
+      case 402:
+      case 404:
+        echo json_encode($res);
     }
     break;
   case 'GET':

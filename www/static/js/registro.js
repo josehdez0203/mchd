@@ -24,8 +24,8 @@ enviar.onclick = async function () {
       method: "POST",
       body: form,
     });
+    console.log(response);
     const respuesta = await response.json();
-    console.log(respuesta);
     if (respuesta.code == 201 && respuesta.ok) {
       alert("Registro exitoso");
       location.href = "/servicios.php";
